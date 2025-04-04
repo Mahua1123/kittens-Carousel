@@ -1,0 +1,31 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Description: |
+  This template creates an ec2 instance with a SG which allows SSH and HTTP.
+
+Resources:
+  CFNInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-08b5b3a93ed654d19
+      InstanceType: t2.micro
+      KeyName: Mahua # don't forget to change the key pair name.
+      SecurityGroups: 
+        - !Ref CfnSecurityGroup
+      Tags: 
+        - Key: Name
+          Value: MyFirstCfnInstance
+   
+  CfnSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allows SSH and HTTP. # Required
+      SecurityGroupIngress: 
+        - CidrIp: 0.0.0.0/0
+          FromPort: 22
+          IpProtocol: tcp
+          ToPort: 22
+        - CidrIp: 0.0.0.0/0
+          FromPort: 80
+          IpProtocol: tcp
+          ToPort: 80
