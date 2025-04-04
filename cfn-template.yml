@@ -1,0 +1,18 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: 
+    Description
+Resources:
+  CFNinstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-071226ecf16aa7d96
+      InstanceType: t2.micro
+      KeyName: Mahua
+      SecurityGroups: 
+        - Mahua-SSH-HTTP
+      Tags: 
+        - Key: Name
+          Value: Cfninstance
+    
+    
+  
